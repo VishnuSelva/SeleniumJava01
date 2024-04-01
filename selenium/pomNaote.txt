@@ -1,0 +1,52 @@
+What is POM?
+          POM is a java design pattern preferred by google to develop object repository.  
+Why POM ? 
+           It’s a well-organized structured design pattern, where we can maintain all the web elements in page wise, due to POM design pattern maintains & modification is easy & faster.
+Advantages of POM: 
+Well organized structure 
+Handle stale element Refrence exception.
+maintains & modification of element is easy
+We can directly store Web Elements in java class
+Better fit for Agile processes 
+Support Auto healing feature 
+
+Why @FindBy & @Findall annotation instead of driver.findElement(“locator”)
+                  Ans : to avoid staleElementReferenceException & also we can use Auto heling feature in @findAll annoation
+What is staleElementReferenceException ?
+
+It’s one of selenium Exception , whenever webdriver try to identify an element , element was available in GUI, 
+but at time of performing an action on the elements element was not recognized due to  page got refreshed or elements may become old or
+element not attached to page in such case we get  staleElementReferenceException
+
+Rules of POM 
+Rule 1 : create separate java class for every page in a application & class name should be same page name
+Rule 2 : Identify all the elements using @findBy & @findAll , @findbys annotations & store them in specific pom / java class (Element declaration)
+Rule3 : For Every POM class  create Constructor to get an Object of the POM class , inside the  Constructor use Pagefactory.
+initElement()  to initialize the Page Elements  at the time Object creation, in order to initialize all the page Elements we should use Pagefactory.initElement() (Element initialization)
+Rule 4 : declare all the WebElements as private & provide getters methods to accesses elements in testScripts class [this processes is called Encapsulation]
+   Note : to create getters mtds inside the java class follow below steps
+              =>place cursor inside the class🡺 Right click🡺source 🡺generate getters & setters 🡺 select the getters check box 🡺 click on ok button
+Rule 5 : Go to every Page & identify the reusable business libraries & implement them in same POM class [Utilization]
+There are two ways , we can utilize the POM elements in test Scripts
+Using getters()                    // single elements access 
+Using business libraries    // multiple elements access
+
+
+Difference between POM & PageFactory design pattern?
+             POM is java design pattern, where will maintain all the  Web element locator in well-organized manner
+           Pagefactory it’s an extended design pattern of POM , which is used to create an Object to POM classes ,
+           & at the time of object creation it will execute all @findBy @findbys annotation then initialize all the elements
+  
+Difference between @findBy , @findAll &@findBys annotation
+ All annotations available in Selenium webdriver, its traditional ways to identify the elements in GUI.
+@FindBy : used to identify the element using one locator or one condition
+@FindAll : it contains multiple @findBy annotation , it mean we can identify  the same element using multiple locator (multiple conditions) , 
+           it will use OR condition during execution of locator
+     @FindAll({ @FindBy(id=’username’) , @FindBy(name=’user’)})
+     Private Webelements userNameEdit;
+   Note : using above concepts we can achieve Autohealing  technique 
+ AutoHealing : during execution , if one locator fails to identify the element , it will retry to identify the same element using another locator 
+@FindBys : it contains multiple @FindBy annotation , it mean we can identify  the elements using multiple locator (multiple conditions) , 
+           it will use AND condition to during execution of locator
+        @FindBys({ @FindBy(id=’username’) , @FindBy(name=’user’)})
+     Private Webelements userNAmeEdt;
