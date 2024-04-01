@@ -15,6 +15,9 @@ public class ClickAndHold {
 		driver.get("https://demoapps.qspiders.com/");
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		
+		WebElement UiTestinh = driver.findElement(By.xpath("//p[text()='UI Testing Concepts']"));	
+		UiTestinh.click();
+		
 		WebElement mouseAction=driver.findElement(By.xpath("//section[text()='Mouse Actions']"));
 		mouseAction.click();
 		
