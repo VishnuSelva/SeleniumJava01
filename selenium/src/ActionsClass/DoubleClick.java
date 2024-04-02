@@ -15,6 +15,9 @@ public class DoubleClick {
 		driver.get("https://demoapps.qspiders.com/");
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		
+		WebElement UiTesting = driver.findElement(By.xpath("//p[text()='UI Testing Concepts']"));	
+		UiTesting.click();
+		
 		WebElement buttonLink=driver.findElement(By.xpath("//section[text()='Button']"));
 		buttonLink.click();
 		
